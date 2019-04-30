@@ -1,30 +1,39 @@
 let niz = [];
-const RECTWIDTH = 2;
+const RECTWIDTH = 5;
 let i = 0;
 let slider;
 let canvas;
 let midline;
-let resetButton;
+let button;
 
 function setup() {
   canvas = createCanvas(900, 500);
-  resetSketch();
-  //canvas.parent('sketchDiv');
-  midline = height / 2;
-  // broj elemenata u nizu
-
-  niz = new Array(width / RECTWIDTH);
-  for (var i = 0; i < niz.length; i++) {
-    //popuni niz
-    niz[i] = int(random(height) / 2);
-  }
   slider = createSlider(1, 60, 20);
   slider.position(canvas.position().x + 20, canvas.position().y + 20);
   slider.size(250);
+  button = createButton("reset");
+  button.mousePressed(resetSketch);
+  midline = height / 2;
+  resetSketch();
 
-  resetButton = createButton("reset");
-  resetButton.mousePressed(resetSketch);
+}
 
+function resetSketch() {
+  i = 0;
+  niz = new Array(width / RECTWIDTH);
+  /*
+  for (var i = 0; i < niz.length; i++) {
+    popuni niz random
+    niz[i] = random(height) / 2;
+  }
+  */
+  //popuni niz lepo pa ga promesaj
+  let step = (height / niz.length) / 2;
+  niz[0] = step;
+  for (var i = 1; i < niz.length; i++) {
+    niz[i] = niz[i - 1] + step;
+  }
+  shuffleArray(niz);
 }
 
 function draw() {
@@ -55,22 +64,15 @@ function draw() {
   i++;
 
   // crtanje
+  stroke(255, 0, 0);
 
-  /* crtaj pravougaonike
+  // crtaj pravougaonike
+  // for (var z = 0; z < niz.length; z++)
+  //   rect(z * RECTWIDTH, height - niz[z], RECTWIDTH, height);
+
+  // crtaj linije gore dole
   for (var z = 0; z < niz.length; z++) {
-    rect(z * RECTWIDTH, height - niz[z], RECTWIDTH, height);
-  }
-  */
-
-  for (var z = 0; z < niz.length; z++) {
-
     line(z * RECTWIDTH, midline, z * RECTWIDTH, midline - niz[z]);
     line(z * RECTWIDTH, midline, z * RECTWIDTH, midline + niz[z]);
   }
-}
-
-
-function resetSketch() {
-
-
 }
