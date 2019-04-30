@@ -1,32 +1,18 @@
-let niz = [];
-const RECTWIDTH = 5;
+let niz;
+const RECTWIDTH = 2;
 let i = 0;
 let slider;
 let canvas;
 let midline;
-let button;
 
 function setup() {
   canvas = createCanvas(900, 500);
   slider = createSlider(1, 60, 20);
   slider.position(canvas.position().x + 20, canvas.position().y + 20);
   slider.size(250);
-  button = createButton("reset");
-  button.mousePressed(resetSketch);
   midline = height / 2;
-  resetSketch();
 
-}
-
-function resetSketch() {
-  i = 0;
   niz = new Array(width / RECTWIDTH);
-  /*
-  for (var i = 0; i < niz.length; i++) {
-    popuni niz random
-    niz[i] = random(height) / 2;
-  }
-  */
   //popuni niz lepo pa ga promesaj
   let step = (height / niz.length) / 2;
   niz[0] = step;
@@ -66,11 +52,7 @@ function draw() {
   // crtanje
   stroke(255, 0, 0);
 
-  // crtaj pravougaonike
-  // for (var z = 0; z < niz.length; z++)
-  //   rect(z * RECTWIDTH, height - niz[z], RECTWIDTH, height);
-
-  // crtaj linije gore dole
+  // crtaj piramidu
   for (var z = 0; z < niz.length; z++) {
     line(z * RECTWIDTH, midline, z * RECTWIDTH, midline - niz[z]);
     line(z * RECTWIDTH, midline, z * RECTWIDTH, midline + niz[z]);
