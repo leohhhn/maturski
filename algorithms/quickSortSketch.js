@@ -1,29 +1,25 @@
 let niz = [];
-const RECTWIDTH = 2;
+const RECTWIDTH = 5;
 let i = 0;
 let slider;
 let canvas;
 let midline;
-let resetButton;
 
 function setup() {
-  canvas = createCanvas(900, 500);
-  resetSketch();
-  //canvas.parent('sketchDiv');
+
+  canvas = createCanvas(windowWidth / 2, 600);
+  canvas.parent('sketchDiv');
   midline = height / 2;
   // broj elemenata u nizu
-
   niz = new Array(width / RECTWIDTH);
   for (var i = 0; i < niz.length; i++) {
     //popuni niz
-    niz[i] = int(random(height) / 2);
+    niz[i] = random(height) / 2;
   }
-  slider = createSlider(1, 60, 20);
+
+  slider = createSlider(1, 60, 15);
   slider.position(canvas.position().x + 20, canvas.position().y + 20);
   slider.size(250);
-
-  resetButton = createButton("reset");
-  resetButton.mousePressed(resetSketch);
 
 }
 
@@ -62,15 +58,10 @@ function draw() {
   }
   */
 
+  fill(255, 0, 0);
+  stroke(0, 255, 0);
   for (var z = 0; z < niz.length; z++) {
-
     line(z * RECTWIDTH, midline, z * RECTWIDTH, midline - niz[z]);
     line(z * RECTWIDTH, midline, z * RECTWIDTH, midline + niz[z]);
   }
-}
-
-
-function resetSketch() {
-
-
 }
