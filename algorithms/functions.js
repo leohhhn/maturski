@@ -19,8 +19,9 @@ function shuffleArray(array) {
   return array;
 }
 
-// scrap code
 
+
+// scrap code
 /*
 for (var i = 0; i < niz.length; i++) {
 //  popuni niz random

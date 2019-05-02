@@ -1,26 +1,25 @@
-let niz = [];
-const RECTWIDTH = 5;
+let niz;
+const RECTWIDTH = 2;
 let i = 0;
 let slider;
 let canvas;
 let midline;
 
 function setup() {
-
-  canvas = createCanvas(windowWidth / 2, 600);
-  canvas.parent('sketchDiv');
-  midline = height / 2;
-  // broj elemenata u nizu
-  niz = new Array(width / RECTWIDTH);
-  for (var i = 0; i < niz.length; i++) {
-    //popuni niz
-    niz[i] = random(height) / 2;
-  }
-
-  slider = createSlider(1, 60, 15);
+  canvas = createCanvas(900, 500);
+  slider = createSlider(1, 60, 20);
   slider.position(canvas.position().x + 20, canvas.position().y + 20);
   slider.size(250);
+  midline = height / 2;
 
+  niz = new Array(width / RECTWIDTH);
+  //popuni niz lepo pa ga promesaj
+  let step = (height / niz.length) / 2;
+  niz[0] = step;
+  for (var i = 1; i < niz.length; i++) {
+    niz[i] = niz[i - 1] + step;
+  }
+  shuffleArray(niz);
 }
 
 function draw() {
@@ -51,17 +50,23 @@ function draw() {
   i++;
 
   // crtanje
+  stroke(255, 0, 0);
 
-  /* crtaj pravougaonike
-  for (var z = 0; z < niz.length; z++) {
-    rect(z * RECTWIDTH, height - niz[z], RECTWIDTH, height);
-  }
-  */
-
-  fill(255, 0, 0);
-  stroke(0, 255, 0);
+  // crtaj piramidu
   for (var z = 0; z < niz.length; z++) {
     line(z * RECTWIDTH, midline, z * RECTWIDTH, midline - niz[z]);
     line(z * RECTWIDTH, midline, z * RECTWIDTH, midline + niz[z]);
+  }
+}
+
+function bubbleSort(array) {
+  for (var i = 0; i < array.length; i++) {
+    for (var j = 0; i < array.length - i - 1; j++) {
+      let a = array[j];
+      let b = array[j + 1];
+      if (a > b) {
+        swap(array, j, j + 1);
+      }
+    }
   }
 }
