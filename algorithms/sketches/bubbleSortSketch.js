@@ -1,20 +1,37 @@
 let niz;
-const RECTWIDTH = 2;
-let i = 0;
+let n;
+let rectWidth = 6; // mora da bude broj koji je delilac width, fix later
+let u = 0; // universal counter used in draw()
 let slider;
 let canvas;
-let midline;
+let step;
+let piramida = false;
+let stubovi = true;
+let resetButton;
 
 function setup() {
   canvas = createCanvas(900, 500);
-  slider = createSlider(1, 60, 20);
-  slider.position(canvas.position().x + 20, canvas.position().y + 20);
-  slider.size(250);
-  midline = height / 2;
+  resetButton = createButton("Reset!");
+  resetButton.mousePressed(resetSketch);
+  makeSlider();
+  resetSketch();
+}
 
-  niz = new Array(width / RECTWIDTH);
-  //popuni niz lepo pa ga promesaj
-  let step = (height / niz.length) / 2;
+function resetSketch() {
+  u = 0;
+  // pravljenje niza
+  niz = [];
+  if (piramida) {
+    n = width;
+    niz = new Array(n);
+    step = (height / niz.length) / 2;
+  } else if (stubovi) {
+    n = width / rectWidth;
+    niz = new Array(n);
+    step = (height / niz.length);
+    slider.remove();
+    makeSlider();
+  }
   niz[0] = step;
   for (var i = 1; i < niz.length; i++) {
     niz[i] = niz[i - 1] + step;
@@ -33,9 +50,9 @@ function draw() {
   text(fps, 290, 40);
 
   // draw se ponavlja, ponasa se kao for loop
-  if (i < niz.length) {
+  if (u < niz.length) {
     // za svako i, dok je i < duzine niza
-    for (let j = 0; j < niz.length - 1 - i; j++) {
+    for (let j = 0; j < niz.length - 1 - u; j++) {
       // - 1 jer ne treba da pitamo za poslednji clan, jer nema nista posle njega
       // - i jer je desni deo niza vec sortiran, pa ne moramo da proveravamo
       var a = niz[j];
@@ -45,18 +62,27 @@ function draw() {
       }
     }
   }
-
-  // povecaj i kao u for loop-u
-  i++;
+  u++;
 
   // crtanje
-  stroke(255, 0, 0);
-
-  // crtaj piramidu
-  for (var z = 0; z < niz.length; z++) {
-    line(z * RECTWIDTH, midline, z * RECTWIDTH, midline - niz[z]);
-    line(z * RECTWIDTH, midline, z * RECTWIDTH, midline + niz[z]);
+  if (piramida) {
+    stroke(255, 0, 0);
+    for (var i = 0; i < niz.length; i++) {
+      line(i, height / 2, i, height / 2 - niz[i]);
+      line(i, height / 2, i, height / 2 + niz[i]);
+    }
+  } else if (stubovi) {
+    stroke(0);
+    fill(255);
+    for (var i = 0; i < niz.length; i++)
+      rect(i * rectWidth, height - niz[i], rectWidth, height);
   }
+}
+
+function makeSlider() {
+  slider = createSlider(1, 60, 20);
+  slider.position(canvas.position().x + 20, canvas.position().y + 20);
+  slider.size(250);
 }
 
 function bubbleSort(array) {
