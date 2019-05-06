@@ -1,36 +1,49 @@
 let niz;
-let n;
-let rectWidth = 6; // mora da bude broj koji je delilac width, fix later
+let n; // number of elements in the array
+let rectWidth = 6; // mora da bude broj koji je delilac width, fix later - just do floor or ceil
 let u; // universal counter used in draw()
 let slider;
 let canvas;
 let step;
-let piramida = false;
-let stubovi = true;
+let piramida = true;
+let stubovi = false;
+let kruznice = false;
 let button;
+let brUpor = 0;
+let brSwap = 0;
 
 function setup() {
-  canvas = createCanvas(900, 500);
+  canvas = createCanvas(1200, 700);
+  ellipseMode(RADIUS);
   button = createButton("reset");
   button.mousePressed(resetSketch);
-  makeSlider();
+  slider = makeSlider(slider, canvas);
   resetSketch();
 }
 
 function resetSketch() {
   u = 0;
+  brUpor = 0;
   // pravljenje niza
   niz = [];
   if (piramida) {
     n = width;
     niz = new Array(n);
-    step = (height / niz.length) / 2;
+    step = ((height - 100) / niz.length) / 2;
+    slider.remove();
+    slider = makeSlider(slider, canvas);
   } else if (stubovi) {
     n = width / rectWidth;
     niz = new Array(n);
     step = (height / niz.length);
     slider.remove();
-    makeSlider();
+    slider = makeSlider(slider, canvas);
+  } else if (kruznice) {
+    n = 2 * width / 5;
+    niz = new Array(n);
+    step = 1;
+    slider.remove();
+    slider = makeSlider(slider, canvas);
   }
   niz[0] = step;
   for (var i = 1; i < niz.length; i++) {
@@ -42,12 +55,6 @@ function resetSketch() {
 function draw() {
   frameRate(slider.value());
   background(30);
-  // ispisi fps
-  fill(255);
-  let fps = slider.value() + "fps";
-  stroke(255);
-  textSize(25);
-  text(fps, 290, 40);
 
   // uzmi da je min prvi element
   let minValue = niz[u];
@@ -56,35 +63,20 @@ function draw() {
   for (j = u + 1; j < niz.length; j++) {
     // nadji najmanji element u nizu desno od trenutnog min
     if (minValue > niz[j]) {
+      brUpor++;
       minValue = niz[j];
       indexOfMin = j;
     }
   }
   // ako si nasao manje od trenutnog min, zameni ih
   if (minValue < niz[u]) {
+    brUpor++;
     swap(niz, u, indexOfMin);
   }
   u++;
-
-  // crtanje
-  if (piramida) {
-    stroke(255, 0, 0);
-    for (var i = 0; i < niz.length; i++) {
-      line(i, height / 2, i, height / 2 - niz[i]);
-      line(i, height / 2, i, height / 2 + niz[i]);
-    }
-  } else if (stubovi) {
-    stroke(0);
-    fill(255);
-    for (var i = 0; i < niz.length; i++)
-      rect(i * rectWidth, height - niz[i], rectWidth, height);
-  }
-}
-
-function makeSlider() {
-  slider = createSlider(1, 60, 20);
-  slider.position(canvas.position().x + 20, canvas.position().y + 20);
-  slider.size(250);
+  
+  crtaj(niz, piramida, stubovi, kruznice);
+  ispisiPodatke(slider, brUpor, n);
 }
 
 function selectionSort(array) {
