@@ -43,17 +43,22 @@ function ispisiPodatke(s, compN, elemN) {
   stroke(255);
   textSize(25);
   text(fps, 290, 40);
-  // ispisi podatke
   let brUtxt = "Broj poredjenja: " + compN;
-  textSize(18);
-  text(brUtxt, width - 190, 25);
+  textSize(19);
+  text(brUtxt, width - 195, 25);
   let nTxt = "Broj elemenata: " + elemN;
-  text(nTxt, width - 190, 50);
+  text(nTxt, width - 195, 50);
 }
 
-function makeSlider(s, c) {
-  s = createSlider(1, 60, 20);
-  s.position(c.position().x + 20, c.position().y + 20);
-  s.size(250);
-  return s;
+function makeSlider(slider, canvas, alg) {
+  switch (alg) {
+    case 1:
+      slider = createSlider(1, 60, 20);
+      break;
+    case 2:
+      slider = createSlider(1, 60, 60);    
+  }
+  slider.position(canvas.position().x + 20, canvas.position().y + 20);
+  slider.size(250);
+  return slider;
 }

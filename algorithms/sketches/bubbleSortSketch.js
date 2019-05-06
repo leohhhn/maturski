@@ -1,8 +1,8 @@
 let niz;
 let nizBoja;
 let n;
-let rectWidth = 6; // mora da bude broj koji je delilac width, fix later
-let u = 0; // universal counter used in draw()
+let rectWidth = 6; 
+let u; // universal counter used in draw()
 let slider;
 let canvas;
 let step;
@@ -10,20 +10,21 @@ let piramida = false;
 let stubovi = false;
 let kruznice = true;
 let resetButton;
-let brUpor = 0;
+let numComps;
+let alg = 1;
 
 function setup() {
   canvas = createCanvas(1200, 700);
   ellipseMode(RADIUS);
   resetButton = createButton("Reset!");
   resetButton.mousePressed(resetSketch);
-  slider = makeSlider(slider, canvas);
+  slider = makeSlider(slider, canvas, alg);
   resetSketch();
 }
 
 function resetSketch() {
   u = 0;
-  brUpor = 0;
+  numComps = 0;
   // pravljenje niza
   niz = [];
   if (piramida) {
@@ -31,19 +32,19 @@ function resetSketch() {
     niz = new Array(n);
     step = (height / niz.length) / 2;
     slider.remove();
-    slider = makeSlider(slider, canvas);
+    slider = makeSlider(slider, canvas, alg);
   } else if (stubovi) {
-    n = width / rectWidth;
+    n = floor(width / rectWidth);
     niz = new Array(n);
     step = (height / niz.length);
     slider.remove();
-    slider = makeSlider(slider, canvas);
+    slider = makeSlider(slider, canvas, alg);
   } else if (kruznice) {
-    n = 2 * width / 5;
+    n = floor(2 * width / 5);
     niz = new Array(n);
     step = 1;
     slider.remove();
-    slider = makeSlider(slider, canvas);
+    slider = makeSlider(slider, canvas, alg);
   }
   niz[0] = step;
   for (var i = 1; i < niz.length; i++) {
@@ -65,7 +66,7 @@ function draw() {
       var a = niz[j];
       var b = niz[j + 1];
       if (a > b) {
-        brUpor++;
+        numComps++;
         swap(niz, j, j + 1);
       }
     }
@@ -73,7 +74,7 @@ function draw() {
   u++;
 
   crtaj(niz, piramida, stubovi, kruznice);
-  ispisiPodatke(slider, brUpor, n);
+  ispisiPodatke(slider, numComps, n);
 }
 
 function bubbleSort(array) {

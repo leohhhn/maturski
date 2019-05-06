@@ -1,29 +1,29 @@
 let niz;
 let n; // number of elements in the array
-let rectWidth = 6; // mora da bude broj koji je delilac width, fix later - just do floor or ceil
+let rectWidth = 6; 
 let u; // universal counter used in draw()
 let slider;
+let resetButton;
 let canvas;
 let step;
 let piramida = true;
 let stubovi = false;
 let kruznice = false;
-let button;
-let brUpor = 0;
-let brSwap = 0;
+let numComps;
+let alg = 2;
 
 function setup() {
   canvas = createCanvas(1200, 700);
   ellipseMode(RADIUS);
-  button = createButton("reset");
-  button.mousePressed(resetSketch);
-  slider = makeSlider(slider, canvas);
+  resetButton = createButton("reset");
+  resetButton.mousePressed(resetSketch);
+  slider = makeSlider(slider, canvas, alg);
   resetSketch();
 }
 
 function resetSketch() {
   u = 0;
-  brUpor = 0;
+  numComps = 0;
   // pravljenje niza
   niz = [];
   if (piramida) {
@@ -31,19 +31,19 @@ function resetSketch() {
     niz = new Array(n);
     step = ((height - 100) / niz.length) / 2;
     slider.remove();
-    slider = makeSlider(slider, canvas);
+    slider = makeSlider(slider, canvas, alg);
   } else if (stubovi) {
-    n = width / rectWidth;
+    n = floor(width / rectWidth);
     niz = new Array(n);
     step = (height / niz.length);
     slider.remove();
-    slider = makeSlider(slider, canvas);
+    slider = makeSlider(slider, canvas, alg);
   } else if (kruznice) {
-    n = 2 * width / 5;
+    n = floor(2 * width / 5);
     niz = new Array(n);
     step = 1;
     slider.remove();
-    slider = makeSlider(slider, canvas);
+    slider = makeSlider(slider, canvas, alg);
   }
   niz[0] = step;
   for (var i = 1; i < niz.length; i++) {
@@ -63,20 +63,20 @@ function draw() {
   for (j = u + 1; j < niz.length; j++) {
     // nadji najmanji element u nizu desno od trenutnog min
     if (minValue > niz[j]) {
-      brUpor++;
+      numComps++;
       minValue = niz[j];
       indexOfMin = j;
     }
   }
   // ako si nasao manje od trenutnog min, zameni ih
   if (minValue < niz[u]) {
-    brUpor++;
+    numComps++;
     swap(niz, u, indexOfMin);
   }
   u++;
   
   crtaj(niz, piramida, stubovi, kruznice);
-  ispisiPodatke(slider, brUpor, n);
+  ispisiPodatke(slider, numComps, n);
 }
 
 function selectionSort(array) {
