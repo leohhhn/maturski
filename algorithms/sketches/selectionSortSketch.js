@@ -1,13 +1,13 @@
 let niz;
 let n; // number of elements in the array
-let rectWidth = 6; 
+let rectWidth = 3;
+let maxNiza;
 let u; // universal counter used in draw()
 let slider;
-let resetButton;
 let canvas;
 let step;
-let piramida = true;
-let stubovi = false;
+let piramida = false;
+let stubovi = true;
 let kruznice = false;
 let numComps;
 let alg = 2;
@@ -15,8 +15,6 @@ let alg = 2;
 function setup() {
   canvas = createCanvas(1200, 700);
   ellipseMode(RADIUS);
-  resetButton = createButton("reset");
-  resetButton.mousePressed(resetSketch);
   slider = makeSlider(slider, canvas, alg);
   resetSketch();
 }
@@ -25,7 +23,6 @@ function resetSketch() {
   u = 0;
   numComps = 0;
   // pravljenje niza
-  niz = [];
   if (piramida) {
     n = width;
     niz = new Array(n);
@@ -49,17 +46,17 @@ function resetSketch() {
   for (var i = 1; i < niz.length; i++) {
     niz[i] = niz[i - 1] + step;
   }
+  maxNiza = niz[niz.length - 1];
+  colorMode(HSB, maxNiza);
   shuffleArray(niz);
 }
 
 function draw() {
   frameRate(slider.value());
   background(30);
-
   // uzmi da je min prvi element
   let minValue = niz[u];
   let indexOfMin = u;
-
   for (j = u + 1; j < niz.length; j++) {
     // nadji najmanji element u nizu desno od trenutnog min
     if (minValue > niz[j]) {
@@ -74,7 +71,6 @@ function draw() {
     swap(niz, u, indexOfMin);
   }
   u++;
-  
   crtaj(niz, piramida, stubovi, kruznice);
   ispisiPodatke(slider, numComps, n);
 }

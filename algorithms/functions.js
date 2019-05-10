@@ -18,46 +18,42 @@ function shuffleArray(array) {
 
 function crtaj(array, piramida, stubovi, kruznice) {
   if (piramida) {
-    stroke(255, 0, 0);
     for (var i = 0; i < array.length; i++) {
+      stroke(niz[i], maxNiza, maxNiza);
       line(i, height / 2, i, height / 2 - array[i]);
       line(i, height / 2, i, height / 2 + array[i]);
     }
   } else if (stubovi) {
-    stroke(0);
+
     fill(255);
-    for (var i = 0; i < array.length; i++)
+    for (var i = 0; i < array.length; i++) {
+      stroke(niz[i], maxNiza, maxNiza);
       rect(i * rectWidth, height - array[i], rectWidth, height);
+    }
   } else if (kruznice) {
-    stroke(255, 0, 0);
     noFill();
     for (var i = 0; i < array.length; i++) {
+      stroke(niz[i], maxNiza, maxNiza);
       ellipse(width / 2, height / 2, i, array[i] / 2);
     }
   }
 }
 
 function ispisiPodatke(s, compN, elemN) {
-  fill(255);
+  fill(0, 0, maxNiza);
   let fps = s.value() + "fps";
-  stroke(255);
+  stroke(0, 0, maxNiza);
   textSize(25);
   text(fps, 290, 40);
-  let brUtxt = "Broj poredjenja: " + compN;
+  let brUtxt = "Broj operacija: " + compN;
   textSize(19);
-  text(brUtxt, width - 195, 25);
+  text(brUtxt, width - 220, 25);
   let nTxt = "Broj elemenata: " + elemN;
   text(nTxt, width - 195, 50);
 }
 
 function makeSlider(slider, canvas, alg) {
-  switch (alg) {
-    case 1:
-      slider = createSlider(1, 60, 20);
-      break;
-    case 2:
-      slider = createSlider(1, 60, 60);    
-  }
+  slider = createSlider(1, 60, 60);
   slider.position(canvas.position().x + 20, canvas.position().y + 20);
   slider.size(250);
   return slider;

@@ -1,23 +1,21 @@
 let niz;
-let nizBoja;
 let n;
-let rectWidth = 6; 
+let maxNiza;
+let rectWidth = 2;
 let u; // universal counter used in draw()
 let slider;
 let canvas;
 let step;
 let piramida = false;
-let stubovi = false;
-let kruznice = true;
-let resetButton;
+let stubovi = true;
+let kruznice = false;
+
 let numComps;
 let alg = 1;
 
 function setup() {
   canvas = createCanvas(1200, 700);
   ellipseMode(RADIUS);
-  resetButton = createButton("Reset!");
-  resetButton.mousePressed(resetSketch);
   slider = makeSlider(slider, canvas, alg);
   resetSketch();
 }
@@ -50,13 +48,14 @@ function resetSketch() {
   for (var i = 1; i < niz.length; i++) {
     niz[i] = niz[i - 1] + step;
   }
+  maxNiza = niz[niz.length - 1];
+  colorMode(HSB, maxNiza);
   shuffleArray(niz);
 }
 
 function draw() {
   frameRate(slider.value());
   background(30);
-
   // draw se ponavlja, ponasa se kao for loop
   if (u < niz.length) {
     // za svako i, dok je i < duzine niza
@@ -79,7 +78,7 @@ function draw() {
 
 function bubbleSort(array) {
   for (var i = 0; i < array.length; i++) {
-    for (var j = 0; i < array.length - i - 1; j++) {
+    for (var j = 0; j < array.length - i - 1; j++) {
       let a = array[j];
       let b = array[j + 1];
       if (a > b) {
