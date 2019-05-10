@@ -1,9 +1,7 @@
 let niz;
 let n; // number of elements in the array
-let rectWidth = 6;
-let u;
-let v;
-let maxNiza;
+let rectWidth = 6; 
+let u; // universal counter used in draw()
 let slider;
 let resetButton;
 let canvas;
@@ -51,8 +49,6 @@ function resetSketch() {
   for (var i = 1; i < niz.length; i++) {
     niz[i] = niz[i - 1] + step;
   }
-  maxNiza = niz[niz.length - 1];
-  colorMode(HSB, maxNiza);
   shuffleArray(niz);
 }
 
@@ -78,7 +74,7 @@ function draw() {
     swap(niz, u, indexOfMin);
   }
   u++;
-
+  
   crtaj(niz, piramida, stubovi, kruznice);
   ispisiPodatke(slider, numComps, n);
 }
