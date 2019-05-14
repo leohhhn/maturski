@@ -2,21 +2,21 @@ let niz;
 let n;
 let maxNiza;
 let rectWidth = 2;
+let ssRectWidth = rectWidth * 5;
 let u; // universal counter used in draw()
 let slider;
 let canvas;
 let step;
-let piramida = false;
-let stubovi = true;
+let piramida = true;
+let stubovi = false;
+let slowStubovi = false;
 let kruznice = false;
 let numOps;
+let alg;
 
-function setup() {
-  canvas = createCanvas(700, 450);
+function windowResized() {
+  resizeCanvas(5 * windowWidth / 10, 5.5 * windowHeight / 10);
   canvas.position(((windowWidth - width) / 2), ((windowHeight - height) / 2));
-  ellipseMode(RADIUS);
-  background(30);
-  slider = makeSlider(slider, canvas);
   resetSketch();
 }
 
@@ -25,7 +25,7 @@ function resetSketch() {
   numOps = 0;
   // pravljenje niza
   if (piramida) {
-    n = width;
+    n = ceil(width);
     niz = new Array(n);
     step = ((height - 100) / niz.length) / 2;
     slider.remove();
@@ -42,19 +42,21 @@ function resetSketch() {
     step = 1;
     slider.remove();
     slider = makeSlider(slider, canvas);
+  } else if (slowStubovi) {
+    n = ceil(width / ssRectWidth);
+    niz = new Array(n);
+    step = (height / niz.length);
+    slider.remove();
+    slider = makeSlider(slider, canvas);
   }
-
   niz[0] = step;
   for (var i = 1; i < niz.length; i++) {
     niz[i] = niz[i - 1] + step;
   }
-  maxNiza = niz[niz.length - 1];
 
+  maxNiza = niz[niz.length - 1];
   colorMode(HSB, maxNiza);
   shuffleArray(niz);
-  // for (var i = 0; i < n; i++) {
-  //   console.log(niz[i]);
-  // }
 }
 
 function swap(array, a, b) {
@@ -94,6 +96,12 @@ function crtaj(array, piramida, stubovi, kruznice) {
       stroke(niz[i], maxNiza, maxNiza);
       ellipse(width / 2, height / 2, i, array[i] / 2);
     }
+  } else if (slowStubovi) {
+    for (var i = 0; i < array.length; i++) {
+      stroke(niz[i], maxNiza, maxNiza);
+      fill(niz[i], maxNiza, maxNiza);
+      rect(i * ssRectWidth, height - array[i], ssRectWidth, height);
+    }
   }
 }
 
@@ -111,7 +119,19 @@ function ispisiPodatke(s, compN, elemN) {
 }
 
 function makeSlider(slider, canvas) {
-  slider = createSlider(1, 60, 60);
+  let value = 60;
+  // switch (alg) {
+  //   case 1:
+  //     value = 60;
+  //     break;
+  //   case 2:
+  //     break;
+  //   case 3:
+  //     value = 60;
+  //     break;
+  // }
+
+  slider = createSlider(1, 60, value);
   slider.position(canvas.position().x + 20, canvas.position().y + 20);
   slider.size(250);
   return slider;

@@ -1,3 +1,13 @@
+function setup() {
+  alg = 1;
+  canvas = createCanvas(5 * windowWidth / 10, 5.5 * windowHeight / 10); // 50% width, 55% height
+  canvas.position(((windowWidth - width) / 2), ((windowHeight - height) / 2)); // center the canvas
+  ellipseMode(RADIUS);
+  background(30);
+  slider = makeSlider(slider, canvas);
+  resetSketch();
+}
+
 function draw() {
   frameRate(slider.value());
   background(30);
