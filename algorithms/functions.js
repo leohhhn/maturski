@@ -7,12 +7,13 @@ let slider;
 let canvas;
 let step;
 let piramida = false;
-let stubovi = false;
-let kruznice = true;
+let stubovi = true;
+let kruznice = false;
 let numOps;
 
 function setup() {
-  canvas = createCanvas(1200, 700);
+  canvas = createCanvas(700, 450);
+  canvas.position(((windowWidth - width) / 2), ((windowHeight - height) / 2));
   ellipseMode(RADIUS);
   background(30);
   slider = makeSlider(slider, canvas);
@@ -42,13 +43,18 @@ function resetSketch() {
     slider.remove();
     slider = makeSlider(slider, canvas);
   }
+
   niz[0] = step;
   for (var i = 1; i < niz.length; i++) {
     niz[i] = niz[i - 1] + step;
   }
   maxNiza = niz[niz.length - 1];
+
   colorMode(HSB, maxNiza);
   shuffleArray(niz);
+  // for (var i = 0; i < n; i++) {
+  //   console.log(niz[i]);
+  // }
 }
 
 function swap(array, a, b) {
@@ -61,7 +67,7 @@ function shuffleArray(array) {
   var currentIndex = array.length;
   var temporaryValue;
   var randomIndex;
-  for (var i = array.length; i >= 0; i--) {
+  for (var i = array.length; i > 0; i--) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
     swap(array, currentIndex, randomIndex);
