@@ -4,12 +4,12 @@ function setup() {
   canvas.position(((windowWidth - width) / 2), ((windowHeight - height) / 2)); // center the canvas
   ellipseMode(RADIUS);
   background(30);
-  slider = makeSlider(slider, canvas);
+
   resetSketch();
 }
 
 function draw() {
-  frameRate(slider.value());
+
   background(30);
 
   // u + 1 jer je u globalno, pocinje od 0
@@ -25,7 +25,7 @@ function draw() {
   u++;
 
   crtaj(niz, piramida, stubovi, kruznice);
-  ispisiPodatke(slider, numOps, n);
+  ispisiPodatke(numOps, n);
 
 }
 

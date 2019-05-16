@@ -4,19 +4,36 @@ let maxNiza;
 let rectWidth = 2;
 let ssRectWidth = rectWidth * 5;
 let u; // universal counter used in draw()
-let slider;
-let canvas;
-let step;
-let piramida = true;
-let stubovi = false;
-let slowStubovi = false;
-let kruznice = false;
 let numOps;
 let alg;
+let canvas;
+let step;
+let piramida = false;
+let stubovi = true;
+let slowStubovi = false;
+let kruznice = false;
+let firstLoop = true;
+let startStopBtn = document.getElementById('startStopBtn');
+let resetBtn = document.getElementById('resetBtn');
+
+// var containerDiv = document.getElementById("sketchContainer");
+// var positionInfo = containerDiv.getBoundingClientRect();
+// var dHeight = positionInfo.height;
+// var dWidth = positionInfo.width;
+
+function startStopSketch() {
+  firstLoop = false;
+  if (startStopBtn.innerHTML == "Start!") {
+    loop();
+    startStopBtn.innerHTML = "Stop!";
+  } else {
+    noLoop();
+    startStopBtn.innerHTML = "Start!";
+  }
+}
 
 function windowResized() {
   resizeCanvas(5 * windowWidth / 10, 5.5 * windowHeight / 10);
-  canvas.position(((windowWidth - width) / 2), ((windowHeight - height) / 2));
   resetSketch();
 }
 
@@ -28,26 +45,18 @@ function resetSketch() {
     n = ceil(width);
     niz = new Array(n);
     step = ((height - 100) / niz.length) / 2;
-    slider.remove();
-    slider = makeSlider(slider, canvas);
   } else if (stubovi) {
     n = floor(width / rectWidth);
     niz = new Array(n);
     step = (height / niz.length);
-    slider.remove();
-    slider = makeSlider(slider, canvas);
   } else if (kruznice) {
     n = floor(2 * width / 5);
     niz = new Array(n);
     step = 1;
-    slider.remove();
-    slider = makeSlider(slider, canvas);
   } else if (slowStubovi) {
     n = ceil(width / ssRectWidth);
     niz = new Array(n);
     step = (height / niz.length);
-    slider.remove();
-    slider = makeSlider(slider, canvas);
   }
   niz[0] = step;
   for (var i = 1; i < niz.length; i++) {
@@ -94,7 +103,8 @@ function crtaj(array, piramida, stubovi, kruznice) {
     noFill();
     for (var i = 0; i < array.length; i++) {
       stroke(niz[i], maxNiza, maxNiza);
-      ellipse(width / 2, height / 2, i, array[i] / 2);
+      ellipse(width / 2, height / 2, 3 * i / 5, 3 * i / 5);
+
     }
   } else if (slowStubovi) {
     for (var i = 0; i < array.length; i++) {
@@ -105,34 +115,14 @@ function crtaj(array, piramida, stubovi, kruznice) {
   }
 }
 
-function ispisiPodatke(s, compN, elemN) {
-  fill(0, 0, maxNiza);
-  let fps = s.value() + "fps";
-  stroke(0, 0, maxNiza);
-  textSize(25);
-  text(fps, 290, 40);
-  let brUtxt = "Broj operacija: " + compN;
+function ispisiPodatke(compN, elemN) {
+  noStroke();
+  colorMode(RGB);
+  fill(255);
+  let brUtxt = "operations: " + (compN / 1000).toFixed(1) + "k";
+  let nTxt = "n: " + elemN;
   textSize(19);
-  text(brUtxt, width - 220, 25);
-  let nTxt = "Broj elemenata: " + elemN;
-  text(nTxt, width - 195, 50);
-}
-
-function makeSlider(slider, canvas) {
-  let value = 60;
-  // switch (alg) {
-  //   case 1:
-  //     value = 60;
-  //     break;
-  //   case 2:
-  //     break;
-  //   case 3:
-  //     value = 60;
-  //     break;
-  // }
-
-  slider = createSlider(1, 60, value);
-  slider.position(canvas.position().x + 20, canvas.position().y + 20);
-  slider.size(250);
-  return slider;
+  text(brUtxt, 5, 20);
+  text(nTxt, 5, 40);
+  colorMode(HSB, maxNiza);
 }
