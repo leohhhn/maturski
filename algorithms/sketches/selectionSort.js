@@ -1,14 +1,16 @@
 function setup() {
   alg = 3;
   canvas = createCanvas(5 * windowWidth / 10, 5.5 * windowHeight / 10); // 50% width, 55% height
-  canvas.position(((windowWidth - width) / 2), ((windowHeight - height) / 2)); // center the canvas
+  canvas.parent('sketchContainer');
   ellipseMode(RADIUS);
-  background(30);
   resetSketch();
+  noLoop();
 }
 
 function draw() {
-  background(30);
+  colorMode(RGB);
+  background(25);
+  colorMode(HSB, maxNiza);
 
   // uzmi da je min prvi element
   let minValue = niz[u];
@@ -28,7 +30,7 @@ function draw() {
   }
   u++;
 
-  crtaj(niz, piramida, stubovi, kruznice);
+  crtaj(niz, piramida, stubovi, elipse);
   ispisiPodatke(numOps, n);
 }
 

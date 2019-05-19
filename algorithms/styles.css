@@ -1,6 +1,6 @@
 body {
   margin: 0 auto;
-  background-color: #EFE2BA;
+  background-color: #4c4c4c;
   height: 100%;
   min-height: 100;
 }
@@ -11,7 +11,12 @@ html {
 }
 
 .container {
-  background-color: #D9B08C;
+  background-color: #e0e0e0;
   height: 100%;
   min-height: 100;
+}
+
+p {
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-size: 20px;
 }

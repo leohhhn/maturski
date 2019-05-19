@@ -30,7 +30,7 @@ function draw() {
   u++;
   if (firstLoop)
     numOps = 0;
-  crtaj(niz, piramida, stubovi, kruznice);
+  crtaj(niz, piramida, stubovi, elipse);
   ispisiPodatke(numOps, n);
 }
 

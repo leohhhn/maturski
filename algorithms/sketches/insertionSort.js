@@ -1,17 +1,16 @@
 function setup() {
   alg = 4;
   canvas = createCanvas(5 * windowWidth / 10, 5.5 * windowHeight / 10); // 50% width, 55% height
-  canvas.position(((windowWidth - width) / 2), ((windowHeight - height) / 2)); // center the canvas
+  canvas.parent('sketchContainer');
   ellipseMode(RADIUS);
-  background(30);
-
   resetSketch();
+  noLoop();
 }
 
 function draw() {
-
-  background(30);
-
+  colorMode(RGB);
+  background(25);
+  colorMode(HSB, maxNiza);
   // u + 1 jer je u globalno, pocinje od 0
   if (u + 1 < niz.length) {
     for (var j = u + 1; j > 0; j--) {
@@ -23,8 +22,9 @@ function draw() {
     }
   }
   u++;
-
-  crtaj(niz, piramida, stubovi, kruznice);
+  if (firstLoop)
+    numOps = 0;
+  crtaj(niz, piramida, stubovi, elipse);
   ispisiPodatke(numOps, n);
 
 }

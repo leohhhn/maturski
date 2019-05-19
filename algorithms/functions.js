@@ -2,44 +2,43 @@ let niz;
 let n;
 let maxNiza;
 let rectWidth = 2;
-let ssRectWidth = rectWidth * 5;
+let ssRectWidth = rectWidth * 3;
 let u; // universal counter used in draw()
 let numOps;
 let alg;
 let canvas;
 let step;
-let piramida = false;
-let stubovi = true;
-let slowStubovi = false;
-let kruznice = false;
 let firstLoop = true;
+let stubovi = true;
+let piramida = false;
+let slowStubovi = false;
+let elipse = false;
 let startStopBtn = document.getElementById('startStopBtn');
 let resetBtn = document.getElementById('resetBtn');
+let rbStubovi = document.getElementById('rbStubovi');
+let rbPiramida = document.getElementById('rbPiramida');
+let rbSStubovi = document.getElementById('rbSStubovi');
+let rbElipse = document.getElementById('rbElipse');
 
 // var containerDiv = document.getElementById("sketchContainer");
 // var positionInfo = containerDiv.getBoundingClientRect();
 // var dHeight = positionInfo.height;
 // var dWidth = positionInfo.width;
 
-function startStopSketch() {
-  firstLoop = false;
-  if (startStopBtn.innerHTML == "Start!") {
-    loop();
-    startStopBtn.innerHTML = "Stop!";
-  } else {
-    noLoop();
-    startStopBtn.innerHTML = "Start!";
-  }
-}
-
-function windowResized() {
-  resizeCanvas(5 * windowWidth / 10, 5.5 * windowHeight / 10);
-  resetSketch();
-}
-
 function resetSketch() {
   u = 0;
   numOps = 0;
+  // proveravanje radioButton-a
+  if (rbStubovi.checked) {
+    stubovi = true;
+  } else if (rbPiramida.checked) {
+    piramida = true;
+  } else if (rbSStubovi.checked) {
+    slowStubovi = true;
+  } else if (rbElipse.checked) {
+    elipse = true;
+  }
+
   // pravljenje niza
   if (piramida) {
     n = ceil(width);
@@ -49,7 +48,7 @@ function resetSketch() {
     n = floor(width / rectWidth);
     niz = new Array(n);
     step = (height / niz.length);
-  } else if (kruznice) {
+  } else if (elipse) {
     n = floor(2 * width / 5);
     niz = new Array(n);
     step = 1;
@@ -66,6 +65,32 @@ function resetSketch() {
   maxNiza = niz[niz.length - 1];
   colorMode(HSB, maxNiza);
   shuffleArray(niz);
+}
+
+function rbChanged() {
+  // radioButton Changed event
+  stubovi = false;
+  piramida = false;
+  slowStubovi = false;
+  elipse = false;
+  resetSketch();
+}
+
+function startStopSketch() {
+  // start/stop dugme onClick 
+  firstLoop = false;
+  if (startStopBtn.innerHTML == "Start!") {
+    loop();
+    startStopBtn.innerHTML = "Stop!";
+  } else {
+    noLoop();
+    startStopBtn.innerHTML = "Start!";
+  }
+}
+
+function windowResized() {
+  resizeCanvas(5 * windowWidth / 10, 5.5 * windowHeight / 10);
+  resetSketch();
 }
 
 function swap(array, a, b) {
@@ -86,7 +111,7 @@ function shuffleArray(array) {
   return array;
 }
 
-function crtaj(array, piramida, stubovi, kruznice) {
+function crtaj(array, piramida, stubovi, elipse) {
   if (piramida) {
     for (var i = 0; i < array.length; i++) {
       stroke(niz[i], maxNiza, maxNiza);
@@ -99,11 +124,11 @@ function crtaj(array, piramida, stubovi, kruznice) {
       stroke(niz[i], maxNiza, maxNiza);
       rect(i * rectWidth, height - array[i], rectWidth, height);
     }
-  } else if (kruznice) {
+  } else if (elipse) {
     noFill();
     for (var i = 0; i < array.length; i++) {
       stroke(niz[i], maxNiza, maxNiza);
-      ellipse(width / 2, height / 2, 3 * i / 5, 3 * i / 5);
+      ellipse(width / 2, height / 2, i, array[i] / 2);
 
     }
   } else if (slowStubovi) {
@@ -119,7 +144,7 @@ function ispisiPodatke(compN, elemN) {
   noStroke();
   colorMode(RGB);
   fill(255);
-  let brUtxt = "operations: " + (compN / 1000).toFixed(1) + "k";
+  let brUtxt = "br. operacija: " + (compN / 1000).toFixed(1) + "k";
   let nTxt = "n: " + elemN;
   textSize(19);
   text(brUtxt, 5, 20);

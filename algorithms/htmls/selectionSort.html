@@ -4,17 +4,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bubble Sort</title>
+  <title>Selection Sort</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="algstyle.css">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/x-icon" href="../img/favicon.ico" />
 </head>
 
 <body>
   <div class="container">
-    <nav class="navbar navbar-light">
-      <p class="h1">Bubble Sort</p>
-    </nav>
-    <p class="font-weight-bold">
+    <p class="display-4 pt-1 text-center">Selection Sort</p>
+    <hr class="pb-3 m-1">
+    <p class="text-justify">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque lectus eget lectus
       pellentesque, sit amet pretium magna tincidunt. Nulla vitae egestas tortor. Lorem ipsum dolor sit
       amet, consectetur adipiscing elit. Praesent porttitor leo vitae aliquet pretium. Donec volutpat
@@ -32,21 +32,45 @@
       <button type="button" id="startStopBtn" class="btn btn-primary" onclick="startStopSketch()">Start!</button>
       <button type="button" id="resetBtn" class="btn btn-primary" onclick="resetSketch()">Reset!</button>
     </div>
+
     <hr class="pb-3">
+
     <div id="sketchContainer" class="text-center">
+
     </div>
 
+
+    <div class="text-center">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="rbStubovi" onchange="rbChanged()" checked>
+        <label class="form-check-label" for="rbStubovi">Stubovi</label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="rbPiramida" onchange="rbChanged()">
+        <label class="form-check-label" for="rbPiramida">Piramida</label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="rbSStubovi" onchange="rbChanged()">
+        <label class="form-check-label" for="rbSStubovi">Spori stubovi</label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="rbElipse" onchange="rbChanged()">
+        <label class="form-check-label" for="rbElipse">Elipse</label>
+      </div>
+    </div>
 
   </div>
 </body>
 
-<script src="../p5.min.js"></script>
-<script src="../addons/p5.dom.min.js"></script>
-<script src="sketches/bubbleSort.js"></script>
-<script src="functions.js"></script>
+</html>
 
+<script src="../../p5.min.js"></script>
+<script src="../../addons/p5.dom.min.js"></script>
+<script src="../sketches/selectionSort.js"></script>
+<script src="../functions.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-</html>
