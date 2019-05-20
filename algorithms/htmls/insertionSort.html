@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quick Sort</title>
+  <title>Insertion Sort</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="../styles.css">
   <link rel="icon" type="image/x-icon" href="../img/favicon.ico" />
@@ -28,39 +28,49 @@
       orci eros, id mollis dolor dignissim et. Phasellus quis lacus in orci cursus cursus.
       Integer quis suscipit massa.
     </p>
-    <div class="text-center mb-2">
-      <button type="button" id="startStopBtn" class="btn btn-primary" onclick="startStopSketch()">Start!</button>
-      <button type="button" id="resetBtn" class="btn btn-primary" onclick="resetSketch()">Reset!</button>
+
+    <div class="row text-center">
+      <div class="col-md-1">
+        <a class="btn btn-primary" href="selectionSort.html" title="Selection Sort"> Nazad</a>
+      </div>
+      <div class="col-md-1 offset-md-4">
+        <button id="startStopBtn" class="btn btn-primary" onclick="startStopSketch()">Start!</button>
+      </div>
+      <div class="col-md-1">
+        <button type="button" id="resetBtn" class="btn btn-primary" onclick="resetSketch()">Reset!</button>
+      </div>
+      <div class="col-md-1 offset-md-4">
+        <a class="btn btn-primary" href="../index.html" title="Početna">Dalje</a>
+      </div>
     </div>
 
     <hr class="pb-1">
-    
     <div class="text-center pb-3">
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="rbStubovi" onchange="rbChanged()" checked>
         <label class="form-check-label" for="rbStubovi">Stubovi</label>
       </div>
-  
+
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="rbPiramida" onchange="rbChanged()">
         <label class="form-check-label" for="rbPiramida">Piramida</label>
       </div>
-  
+
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="rbSStubovi" onchange="rbChanged()">
         <label class="form-check-label" for="rbSStubovi">Spori stubovi</label>
       </div>
-  
+
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="rbElipse" onchange="rbChanged()">
         <label class="form-check-label" for="rbElipse">Elipse</label>
       </div>
     </div>
-  
+
     <div id="sketchContainer" class="text-center">
     </div>
-  
-  
+
+
 
   </div>
 </body>

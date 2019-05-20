@@ -24,7 +24,7 @@ var positionInfo = containerDiv.getBoundingClientRect();
 var dHeight = positionInfo.height;
 var dWidth = positionInfo.width;
 
-// TODO add tick for some algorithms, add buttons
+// TODO add tick for some algorithms, add buttons, fix 
 
 function setup() {
   canvas = createCanvas(9 * dWidth / 10, 500); // 50% width, 55% height
