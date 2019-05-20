@@ -5,7 +5,6 @@ let rectWidth = 2;
 let ssRectWidth = rectWidth * 3;
 let u; // universal counter used in draw()
 let numOps;
-let alg;
 let canvas;
 let step;
 let firstLoop = true;
@@ -13,21 +12,32 @@ let stubovi = true;
 let piramida = false;
 let slowStubovi = false;
 let elipse = false;
+
 let startStopBtn = document.getElementById('startStopBtn');
 let resetBtn = document.getElementById('resetBtn');
 let rbStubovi = document.getElementById('rbStubovi');
 let rbPiramida = document.getElementById('rbPiramida');
 let rbSStubovi = document.getElementById('rbSStubovi');
 let rbElipse = document.getElementById('rbElipse');
+var containerDiv = document.getElementById("glavni");
+var positionInfo = containerDiv.getBoundingClientRect();
+var dHeight = positionInfo.height;
+var dWidth = positionInfo.width;
 
-// var containerDiv = document.getElementById("sketchContainer");
-// var positionInfo = containerDiv.getBoundingClientRect();
-// var dHeight = positionInfo.height;
-// var dWidth = positionInfo.width;
+// TODO add tick for some algorithms, add buttons
+
+function setup() {
+  canvas = createCanvas(9 * dWidth / 10, 500); // 50% width, 55% height
+  canvas.parent('sketchContainer');
+  ellipseMode(RADIUS);
+  resetSketch();
+  noLoop();
+}
 
 function resetSketch() {
   u = 0;
   numOps = 0;
+  firstLoop = true;
   // proveravanje radioButton-a
   if (rbStubovi.checked) {
     stubovi = true;
@@ -65,6 +75,7 @@ function resetSketch() {
   maxNiza = niz[niz.length - 1];
   colorMode(HSB, maxNiza);
   shuffleArray(niz);
+  redraw();
 }
 
 function rbChanged() {
@@ -77,7 +88,7 @@ function rbChanged() {
 }
 
 function startStopSketch() {
-  // start/stop dugme onClick 
+  // start/stop dugme onClick
   firstLoop = false;
   if (startStopBtn.innerHTML == "Start!") {
     loop();
@@ -89,7 +100,10 @@ function startStopSketch() {
 }
 
 function windowResized() {
-  resizeCanvas(5 * windowWidth / 10, 5.5 * windowHeight / 10);
+  positionInfo = containerDiv.getBoundingClientRect();
+  dHeight = positionInfo.height;
+  dWidth = positionInfo.width;
+  resizeCanvas(9 * dWidth / 10, 500);
   resetSketch();
 }
 
@@ -112,6 +126,7 @@ function shuffleArray(array) {
 }
 
 function crtaj(array, piramida, stubovi, elipse) {
+  // crtanje na canvasu
   if (piramida) {
     for (var i = 0; i < array.length; i++) {
       stroke(niz[i], maxNiza, maxNiza);
@@ -141,6 +156,7 @@ function crtaj(array, piramida, stubovi, elipse) {
 }
 
 function ispisiPodatke(compN, elemN) {
+  // ispisivanje podataka, broj elemenata i broj operacija na canvasu
   noStroke();
   colorMode(RGB);
   fill(255);

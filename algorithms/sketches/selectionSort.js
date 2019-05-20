@@ -1,12 +1,3 @@
-function setup() {
-  alg = 3;
-  canvas = createCanvas(5 * windowWidth / 10, 5.5 * windowHeight / 10); // 50% width, 55% height
-  canvas.parent('sketchContainer');
-  ellipseMode(RADIUS);
-  resetSketch();
-  noLoop();
-}
-
 function draw() {
   colorMode(RGB);
   background(25);
@@ -29,6 +20,10 @@ function draw() {
     swap(niz, u, indexOfMin);
   }
   u++;
+  if (firstLoop) {
+    numOps = 0;
+    firstLoop = false;
+  }
 
   crtaj(niz, piramida, stubovi, elipse);
   ispisiPodatke(numOps, n);
