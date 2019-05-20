@@ -1,3 +1,11 @@
+function setup() {
+  canvas = createCanvas(9 * dWidth / 10, 500); // 50% width, 55% height
+  canvas.parent('sketchContainer');
+  ellipseMode(RADIUS);
+  resetSketch();
+  noLoop();
+}
+
 function draw() {
   colorMode(RGB);
   background(25);

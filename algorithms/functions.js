@@ -12,7 +12,6 @@ let stubovi = true;
 let piramida = false;
 let slowStubovi = false;
 let elipse = false;
-
 let startStopBtn = document.getElementById('startStopBtn');
 let resetBtn = document.getElementById('resetBtn');
 let rbStubovi = document.getElementById('rbStubovi');
@@ -24,15 +23,7 @@ var positionInfo = containerDiv.getBoundingClientRect();
 var dHeight = positionInfo.height;
 var dWidth = positionInfo.width;
 
-// TODO add tick for some algorithms, add buttons, fix 
-
-function setup() {
-  canvas = createCanvas(9 * dWidth / 10, 500); // 50% width, 55% height
-  canvas.parent('sketchContainer');
-  ellipseMode(RADIUS);
-  resetSketch();
-  noLoop();
-}
+// TODO add tick for some algorithms, quick sort is impossible lol
 
 function resetSketch() {
   u = 0;
