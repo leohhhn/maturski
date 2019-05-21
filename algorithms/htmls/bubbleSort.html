@@ -14,23 +14,39 @@
   <div class="container" id="glavni">
     <p class="display-4 pt-1 text-center">Bubble Sort</p>
     <hr class="pb-3 m-1">
-    <p class="text-justify">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque lectus eget lectus
-      pellentesque, sit amet pretium magna tincidunt. Nulla vitae egestas tortor. Lorem ipsum dolor sit
-      amet, consectetur adipiscing elit. Praesent porttitor leo vitae aliquet pretium. Donec volutpat
-      interdum porta. Aenean ut massa ut erat pretium sollicitudin eu id purus. Quisque condimentum
-      nulla vitae sem auctor aliquet. Proin semper odio sed dui vestibulum, ac aliquam magna luctus.
-      Proin massa diam, pretium a mauris quis, porttitor ultrices sapien.
 
-      Morbi eleifend quam ut pulvinar sollicitudin. Mauris tempus maximus sapien non
-      volutpat. Suspendisse euismod leo vel turpis ultricies, eu egestas dolor hendrerit
-      . Donec tincidunt blandit faucibus. Aliquam dapibus tempor consequat. Sed faucibus
-      orci eros, id mollis dolor dignissim et. Phasellus quis lacus in orci cursus cursus.
-      Integer quis suscipit massa.
-    </p>
-    <hr class="my-1">
+    <div class="row mx-auto">
+      <p class="text-justify col-md-7 ">
+        Bubble sort je jedan od najprostijih algoritama za sortiranje.
+        Radi tako što proverava da li su dva sporedna elementa u tačnom redosledu, i ako nisu, zameni ih. Iako je relativno prost za implementaciju,
+        nije vrlo efikasan, jer mu kompleksnost raste sa kvadratom broja elemenata, i čak ga pobeđuje i Insertion Sort.
+        Može se koristiti ako ima poneki element koji nije na tačnom mestu u nizu.
+        U prvom for-u prolazimo kroz ceo niz. U drugom for-u idemo do array.length - 1 - i, -1 jer nije potrebno
+        pitati za poslednji element, a - i jer je niz sortiran sa desne strane. 
+        Ovo malo ubrzava algoritam, ali idalje mu ne menja složenost.
+      </p>
+      <pre class="bg-dark col-md-5 rounded h-100"><code class="text-light ">  
+  function bubbleSort(array) {
+    for (var i = 0; i < array.length; i++) {
+      for (var j = 0; j < array.length - i - 1; j++) {
+          let a = array[j];
+          let b = array[j + 1];
+          if (a > b) {
+            swap(array, j, j + 1);
+          }
+        }
+      }
+    } // implementacija u JS
+</code>
+    </pre>
+
+
+
+    </div>
+
+    <hr class="my-2 mx-1  px-2">
     <div class="row mx-1 p-2">
-      
+
       <div>
         <button type="button" id="startStopBtn" class="btn btn-primary" onclick="startStopSketch()">Počni!</button>
         <button type="button" id="resetBtn" class="btn btn-primary " onclick="resetSketch()">Promešaj!</button>
@@ -59,13 +75,13 @@
         </div>
       </div>
     </div>
-    
+
     <div id="sketchContainer" class="text-center">
     </div>
-    
+
     <div class="row p-2 mx-1">
       <a class="btn btn-danger mr-auto h-100" href="../index.html" title="Početna">Početna</a>
-      <p id="bottomText" >bottom text</p>
+      <p id="bottomText">bottom text</p>
       <a class="btn btn-danger ml-auto h-100" href="selectionSort.html" title="Selection Sort">Selection Sort</a>
     </div>
   </div>
