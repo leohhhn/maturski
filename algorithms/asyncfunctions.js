@@ -4,10 +4,10 @@ let maxNiza;
 let polaNiza = Math.floor(n / 2); // pola duzine niza
 let rectWidth = 2;
 let ssRectWidth = rectWidth * 3;
-let u; // universal counter used in draw()
 let numOps;
 let canvas;
 let step;
+
 let firstLoop = true;
 let stubovi = false;
 let piramida = false;
@@ -31,7 +31,6 @@ var dWidth = positionInfo.width;
 function resetSketch() {
   u = 0;
   numOps = 0;
-  firstLoop = true;
   // proveravanje radioButton-a
   if (rbStubovi.checked) {
     stubovi = true;
@@ -44,7 +43,7 @@ function resetSketch() {
   } else if (rbPolarCircle.checked) {
     polarCircle = true;
   }
-  
+
   // pravljenje niza
   if (piramida) {
     n = ceil(width);
@@ -53,7 +52,7 @@ function resetSketch() {
   } else if (stubovi) {
     n = floor(width / rectWidth);
     niz = new Array(n);
-    step = (height / niz.length);
+    step = floor(height / niz.length);
   } else if (elipse) {
     n = floor(2 * width / 5);
     niz = new Array(n);
@@ -75,7 +74,6 @@ function resetSketch() {
   colorMode(HSB, maxNiza);
   shuffleArray(niz);
   redraw();
-  firstLoop = true;
 }
 
 function rbChanged() {
@@ -91,12 +89,12 @@ function rbChanged() {
 function startStopSketch() {
   // start/stop dugme onClick
   firstLoop = false;
-  if (startStopBtn.innerHTML == "Počni!") {
+  if (startStopBtn.innerHTML == "Start!") {
     loop();
-    startStopBtn.innerHTML = "Stani!";
+    startStopBtn.innerHTML = "Stop!";
   } else {
     noLoop();
-    startStopBtn.innerHTML = "Počni!";
+    startStopBtn.innerHTML = "Start!";
   }
 }
 
@@ -104,7 +102,7 @@ function windowResized() {
   positionInfo = containerDiv.getBoundingClientRect();
   dHeight = positionInfo.height;
   dWidth = positionInfo.width;
-  resizeCanvas(9.5 * dWidth / 10, 500);
+  resizeCanvas(9 * dWidth / 10, 500);
   resetSketch();
 }
 
@@ -148,12 +146,10 @@ function crtaj(array, piramida, stubovi, elipse, polarniKrug) {
     for (var i = 0; i < array.length; i++) {
       stroke(niz[i], maxNiza, maxNiza);
       ellipse(width / 2, height / 2, i, array[i] / 2);
-
     }
   } else if (veciStubovi) {
     strokeWeight(1);
     for (var i = 0; i < array.length; i++) {
-
       stroke(niz[i], maxNiza, maxNiza);
       fill(niz[i], maxNiza, maxNiza);
       rect(i * ssRectWidth, height - array[i], ssRectWidth, height);

@@ -2,7 +2,6 @@ body {
   margin: 0 auto;
   background-color: #4c4c4c;
   height: 100%;
-  zoom:80%;
 }
 
 html {
@@ -18,7 +17,11 @@ p {
   font-size: 20px;
 }
 
+#bottomText {
+  line-height: 20px;
+}
+
 #homeContainer {
   overflow: hidden;
-
+  height: 100%;
 }
