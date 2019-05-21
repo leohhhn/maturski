@@ -1,13 +1,13 @@
 let niz;
 let n;
 let maxNiza;
-let polaNiza = Math.floor(n / 2); // pola duzine niza
-let rectWidth = 2;
-let ssRectWidth = rectWidth * 3;
+let rectWidth = 4;
+let ssRectWidth = rectWidth * 2;
 let u; // universal counter used in draw()
 let numOps;
 let canvas;
 let step;
+
 let firstLoop = true;
 let stubovi = false;
 let piramida = false;
@@ -32,6 +32,7 @@ function resetSketch() {
   u = 0;
   numOps = 0;
   firstLoop = true;
+  
   // proveravanje radioButton-a
   if (rbStubovi.checked) {
     stubovi = true;
@@ -44,7 +45,7 @@ function resetSketch() {
   } else if (rbPolarCircle.checked) {
     polarCircle = true;
   }
-  
+
   // pravljenje niza
   if (piramida) {
     n = ceil(width);
@@ -123,7 +124,6 @@ function shuffleArray(array) {
     currentIndex -= 1;
     swap(array, currentIndex, randomIndex);
   }
-  return array;
 }
 
 function crtaj(array, piramida, stubovi, elipse, polarniKrug) {
@@ -136,9 +136,10 @@ function crtaj(array, piramida, stubovi, elipse, polarniKrug) {
       line(i, height / 2, i, height / 2 + array[i]);
     }
   } else if (stubovi) {
-    fill(255);
+
     strokeWeight(1);
     for (var i = 0; i < array.length; i++) {
+      fill(niz[i], maxNiza, maxNiza);
       stroke(niz[i], maxNiza, maxNiza);
       rect(i * rectWidth, height - array[i], rectWidth, height);
     }
@@ -148,12 +149,10 @@ function crtaj(array, piramida, stubovi, elipse, polarniKrug) {
     for (var i = 0; i < array.length; i++) {
       stroke(niz[i], maxNiza, maxNiza);
       ellipse(width / 2, height / 2, i, array[i] / 2);
-
     }
   } else if (veciStubovi) {
     strokeWeight(1);
     for (var i = 0; i < array.length; i++) {
-
       stroke(niz[i], maxNiza, maxNiza);
       fill(niz[i], maxNiza, maxNiza);
       rect(i * ssRectWidth, height - array[i], ssRectWidth, height);
@@ -162,28 +161,19 @@ function crtaj(array, piramida, stubovi, elipse, polarniKrug) {
     let r = height * 0.45;
     let x0 = width / 2;
     let y0 = height / 2;
-    strokeWeight(5);
-
     for (var i = 0; i < array.length; i++) {
       let theta = i * (Math.PI / 180);
-      let xi = x0 + r * Math.cos(theta);
-      let yi = y0 + r * Math.sin(theta);
+      let halfDeg = 0.5 * (Math.PI / 180);
+      let xl = x0 + r * Math.cos(theta - halfDeg);
+      let yl = y0 + r * Math.sin(theta - halfDeg);
+      let xr = x0 + r * Math.cos(theta + halfDeg);
+      let yr = y0 + r * Math.sin(theta + halfDeg);
+      fill(niz[i], maxNiza, maxNiza);
       stroke(niz[i], maxNiza, maxNiza);
-      line(x0, y0, xi, yi);
-
+      triangle(x0, y0, xl, yl, xr, yr);
     }
   }
 }
-
-/*
-[2, 5]           
--2     -min
-[0, 3]
-/3     / (max - min)
-[0, 1]
-[0, 360]
-*/
-
 
 function ispisiPodatke(compN, elemN) {
   // ispisivanje podataka, broj elemenata i broj operacija na canvasu
