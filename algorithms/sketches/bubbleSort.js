@@ -31,7 +31,7 @@ function draw() {
     numOps = 0;
     firstLoop = false;
   }
-  crtaj(niz, piramida, stubovi, elipse);
+  crtaj(niz, piramida, stubovi, elipse, polarCircle);
   ispisiPodatke(numOps, n);
 }
 
