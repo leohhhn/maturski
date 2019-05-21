@@ -7,6 +7,7 @@ let u; // universal counter used in draw()
 let numOps;
 let canvas;
 let step;
+let interval;
 
 let firstLoop = true;
 let stubovi = false;
@@ -32,7 +33,11 @@ function resetSketch() {
   u = 0;
   numOps = 0;
   firstLoop = true;
-  
+  if (interval) {
+    clearInterval(interval);
+  }
+  interval = setInterval(tick, 1);
+
   // proveravanje radioButton-a
   if (rbStubovi.checked) {
     stubovi = true;
@@ -52,7 +57,7 @@ function resetSketch() {
     niz = new Array(n);
     step = ((height - 100) / niz.length) / 2;
   } else if (stubovi) {
-    n = floor(width / rectWidth);
+    n = ceil(width / rectWidth);
     niz = new Array(n);
     step = (height / niz.length);
   } else if (elipse) {
@@ -181,7 +186,7 @@ function ispisiPodatke(compN, elemN) {
   colorMode(RGB);
   fill(255);
   let brUtxt = "br. operacija: " + (compN / 1000).toFixed(1) + "k";
-  let nTxt = "n: " + elemN;
+  let nTxt = "br. elemenata: " + elemN;
   textSize(19);
   text(brUtxt, 5, 20);
   text(nTxt, 5, 40);

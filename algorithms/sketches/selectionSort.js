@@ -47,8 +47,7 @@ function selectionSort(array) {
         indexOfMin = j;
       }
     }
-    if (minValue < array[i]) {
+    if (minValue < array[i])
       swap(array, i, indexOfMin);
-    }
   }
 }
