@@ -12,11 +12,13 @@
 
 <body>
   <div class="container" id="glavni">
-    <p class="display-4 pt-1 text-center">Selection Sort</p>
+    <div class="text-center">
+      <a id="headingA" href="../index.html" class="display-4 pt-1">Selection Sort</a>
+    </div>
     <hr class="pb-3 m-1">
     <div class="row mx-auto">
       <p class="text-justify col-md-7 ">
-  
+
       </p>
       <pre class="bg-dark col-md-5 rounded h-100 text-light pt-1">
   function selectionSort(array) {
@@ -31,8 +33,8 @@
       }
       if (minValue < array[i])
         swap(array, i, indexOfMin);
-    } // implementacija u JS
-  }
+    } 
+  } // implementacija u JS
     </pre>
 
 
@@ -45,6 +47,8 @@
       <div>
         <button type="button" id="startStopBtn" class="btn btn-primary" onclick="startStopSketch()">Počni!</button>
         <button type="button" id="resetBtn" class="btn btn-primary " onclick="resetSketch()">Promešaj!</button>
+        <input type="checkbox" class="ml-2" id="fpsChanger" onclick="fpsChanged()">
+        <label class="form-check-label" class="" for="fpsChanger"> Sporije!!</label>
       </div>
 
       <div class="ml-auto">

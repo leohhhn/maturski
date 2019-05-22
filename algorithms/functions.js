@@ -2,7 +2,7 @@ let niz;
 let n;
 let maxNiza;
 let rectWidth = 4;
-let ssRectWidth = rectWidth * 2;
+let ssRectWidth = rectWidth * 4;
 let u; // universal counter used in draw()
 let numOps;
 let canvas;
@@ -22,7 +22,8 @@ let rbStubovi = document.getElementById('rbStubovi');
 let rbPiramida = document.getElementById('rbPiramida');
 let rbVStubovi = document.getElementById('rbVStubovi');
 let rbElipse = document.getElementById('rbElipse');
-var containerDiv = document.getElementById("glavni");
+let fpsChanger = document.getElementById('fpsChanger');
+var containerDiv = document.getElementById('glavni');
 var positionInfo = containerDiv.getBoundingClientRect();
 var dHeight = positionInfo.height;
 var dWidth = positionInfo.width;
@@ -33,10 +34,10 @@ function resetSketch() {
   u = 0;
   numOps = 0;
   firstLoop = true;
-  if (interval) {
-    clearInterval(interval);
-  }
-  interval = setInterval(tick, 1);
+  //  if (interval) {
+  //    clearInterval(interval);
+  //  }
+  //  interval = setInterval(tick, 1);
 
   // proveravanje radioButton-a
   if (rbStubovi.checked) {
@@ -92,6 +93,14 @@ function rbChanged() {
   elipse = false;
   polarCircle = false;
   resetSketch();
+}
+
+function fpsChanged() {
+  if (fpsChanger.checked) {
+    frameRate(3);
+  } else {
+    frameRate(60);
+  }
 }
 
 function startStopSketch() {
