@@ -17,8 +17,15 @@
     </div>
     <hr class="pb-3 m-1">
     <div class="row mx-auto">
-      <p class="text-justify col-md-7 ">
-
+      <p class="text-justify col-md-7">
+        Selection sort "deli" niz na dva podniza, sortirani i nesortirani. Iako je sporiji od većine algoritama za
+        sortiranje, ima neke prednosti. Ako nam je memorija ograničena,
+        Selection sort-u nije potrebna kopija originalnog niza kako bi radio.
+        <br>
+        Sa <i>minValue</i> pratimo vrednost najmanjeg elementa, a sa <i>indexOfMin</i> pratimo njegovu poziciju.
+        Drugom for-u nalazimo najmanji element u ostatku niza,
+        i nakon toga ga poredimo sa <i>minValue</i>,
+        i zamenjujemo ih po potrebi. Ovo ponavljamo dok niz nije kompletko sortiran.
       </p>
       <pre class="bg-dark col-md-5 rounded h-100 text-light pt-1">
   function selectionSort(array) {

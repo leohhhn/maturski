@@ -1,13 +1,11 @@
 body {
   margin: 0 auto;
-
   height: 100%;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("img/background.jpg");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  
 }
 
 html {
@@ -22,22 +20,21 @@ p {
   font-family: 'Helvetica', 'Arial', sans-serif;
   font-size: 20px;
 }
-#bottomText{
+
+#bottomText {
   color: #e0e0e0;
-  
-}
-#bottomText:hover {
-  color: black;
-  
 }
 
-#homeContainer {
-  overflow: hidden;
-  height: 100%;
+#bottomText:hover {
+  color: black;
 }
 
 #headingA {
   text-decoration: none;
   font-family: 'Helvetica', 'Arial', sans-serif;
   color: black;
+}
+
+li {
+  font-size: 20px;
 }

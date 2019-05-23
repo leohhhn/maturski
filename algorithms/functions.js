@@ -97,7 +97,7 @@ function rbChanged() {
 
 function fpsChanged() {
   if (fpsChanger.checked) {
-    frameRate(3);
+    frameRate(1);
   } else {
     frameRate(60);
   }

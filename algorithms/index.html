@@ -18,18 +18,50 @@
     <hr class="pb-3 m-1">
     <p class="text-center"><small>Maturski rad, Lav Leon Hudak, 2018/2019</small></p>
 
-    <p class="text-justify ">
-      Nizovi su jedan od najbitnijih koncepta u svetu programa. Koristimo ih se da čuvamo više promenljivih u jednoj.
+    <p class="text-justify">
+      Nizovi su struktura podataka koja se sastoji iz više promenljivih, od kojih svaka ima
+      svoj index u nizu. Najprostiji nizovi su jednodimenzionalni, dok, kada bismo imali beskonačno mnogo memorije i kompjuterske snage,
+      mogli bi smo da imamo n-todimenzionalni niz. Kada pravimo niz, obično je potrebno definisati vrstu promenljivih koje će biti
+      u nizu. Postoje različite vrste nizova, kao što su:
     </p>
+    <div class="row mx-3">
+      <ul class="col-md-2">
+        <li class="">Vector</li>
+        <li class="">List</li>
+        <li class="">Stack</li>
+        <li class="">Queue</li>
+      </ul>
+      <ul class="col-md-2">
+        <li class="">Matrix</li>
+        <li class="">Dope Vector</li>
+        <li class="">Dynamic Array</li>
+        <li class="">Parallel Array</li>
+      </ul>
+
+      <pre class="bg-dark rounded text-light pt-3">
+  // sintaksa nizova u različitim programskim jezicima
+  int foo [5] = { 16, 2, 77, 40, 21 }; // C++
+  int[] foo = new int[5]; // C#, nepopunjeni niz dužine 5
+  let foo = [1, 2, 3, 4, 5]; // JS, nije potrebno deklarisati vrstu promenljive              
+  foo = ["jabuka", "banana", "lubenica"] // Python
+ </pre>
+    </div>
+
+    <p class="text-justify">Višedimenzionalni nizovi su zapravo nizovi nizova. Svaki element u nizu je niz, koji sadrzi neke vrednosti. 2D niz, takođe pod
+      imenom "matrica" (<i>engl.</i> "Matrix") je bitan koncept u matematici, a samim time i u teoriji
+      kompjutera i svetu programiranja.</p>
+
     <hr class="pb-3 m-1">
 
-    <div class="row">
+    <div class="row px-2">
       <div class="col-sm-4 py-2">
         <div class="card h-100">
           <div class="card-body">
-            <h4 class="card-title">Bubble Sort</h4>
-            <p class="card-text">bubbles...</p>
-            <a href="htmls/bubbleSort.html" class="btn btn-primary">Više</a>
+            <h4 class="card-title h3">Bubble Sort</h4>
+            <p class="card-text">Prosečna složenost: O(n<sup>2</sup>)</p>
+            <p class="card-text">Najprostiji algoritam za sortiranje niza. Prolazi kroz
+              niz i kada naiđe na par elemenata koji nisu poređani, zameni im mesta.</p>
+            <a href="htmls/bubbleSort.html" class="btn btn-outline-danger btn-lg">Vidi više</a>
           </div>
         </div>
       </div>
@@ -37,8 +69,11 @@
         <div class="card h-100">
           <div class="card-body">
             <h4 class="card-title">Selection Sort</h4>
-            <p class="card-text">selecting, huh?</p>
-            <a href="htmls/selectionSort.html" class="btn btn-primary">Više</a>
+            <p class="card-text">Prosečna složenost: O(n<sup>2</sup>)</p>
+            <p class="card-text">Polako povećava sortirani podniz tako što iz nesortiranog podniza uzima najmanji element
+              i stavlja ga na kraj sortiranog podniza.
+            </p>
+            <a href="htmls/selectionSort.html" class="btn btn-outline-danger btn-lg">Vidi više</a>
           </div>
         </div>
       </div>
@@ -46,17 +81,16 @@
         <div class="card h-100">
           <div class="card-body">
             <h4 class="card-title">Insertion Sort</h4>
-            <p class="card-text">insertion ( ͡° ͜ʖ ͡°)</p>
-            <a href="htmls/insertionSort.html" class="btn btn-primary">Više</a>
+            <p class="card-text">Prosečna složenost: O(n<sup>2</sup>)</p>
+            <p class="card-text">Prost algoritam za sortiranje koji postepeno pravi sve veću i veću sortiranu
+              listu od niza. Neefikasan za veće nizove.</p>
+            <a href="htmls/insertionSort.html" class="btn btn-outline-danger btn-lg">Vidi više</a>
           </div>
         </div>
       </div>
     </div>
-
-
-    <hr class="pb-3 mt-3 m-1">
-  </div>
-
+    <hr class=" mt-3">
+    <p class="text-center m-0 pb-3">Računarska gimnazija, godina 2018/2019</p>
   </div>
 </body>
 
