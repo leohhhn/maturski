@@ -34,11 +34,7 @@ function resetSketch() {
   u = 0;
   numOps = 0;
   firstLoop = true;
-  //  if (interval) {
-  //    clearInterval(interval);
-  //  }
-  //  interval = setInterval(tick, 1);
-
+  
   // proveravanje radioButton-a
   if (rbStubovi.checked) {
     stubovi = true;
