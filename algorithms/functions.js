@@ -28,8 +28,6 @@ var positionInfo = containerDiv.getBoundingClientRect();
 var dHeight = positionInfo.height;
 var dWidth = positionInfo.width;
 
-// TODO add tick for some algorithms
-
 function resetSketch() {
   u = 0;
   numOps = 0;
