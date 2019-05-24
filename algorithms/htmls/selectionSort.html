@@ -13,7 +13,7 @@
 <body>
   <div class="container" id="glavni">
     <div class="text-center">
-      <a id="headingA" href="../index.html" class="display-4 pt-1">Selection Sort</a>
+      <a id="headingA" href="../index.html" title="Nazad na početnu" class="display-4 pt-1">Selection Sort</a>
     </div>
     <hr class="pb-3 m-1">
     <div class="row mx-auto">
@@ -26,6 +26,9 @@
         Drugom for-u nalazimo najmanji element u ostatku niza,
         i nakon toga ga poredimo sa <i>minValue</i>,
         i zamenjujemo ih po potrebi. Ovo ponavljamo dok niz nije kompletko sortiran.
+        <br> Selecion sort je malo sporiji od Insertion sort-a, jer mora da prođe kroz celu nesortiranu listu kako bi našao
+        najmanji element.
+      
       </p>
       <pre class="bg-dark col-md-5 rounded h-100 text-light pt-1">
   function selectionSort(array) {

@@ -13,18 +13,12 @@
 <body>
   <div class="container" id="glavni">
     <div class="text-center">
-      <a id="headingA" href="../index.html" class="display-4 pt-1">Insertion Sort</a>
+      <a id="headingA" href="../index.html" title="Nazad na početnu" class="display-4 pt-1">Insertion Sort</a>
     </div>
     <hr class="pb-3 m-1">
     <div class="row mx-auto">
       <p class="text-justify col-md-7 ">
-        Bubble sort je jedan od najprostijih algoritama za sortiranje.
-        Radi tako što proverava da li su dva sporedna elementa u tačnom redosledu, i ako nisu, zameni ih. Iako je relativno prost za implementaciju,
-        nije vrlo efikasan, jer mu kompleksnost raste sa kvadratom broja elemenata, i čak ga pobeđuje i Insertion Sort.
-        Može se koristiti ako ima poneki element koji nije na tačnom mestu u nizu.
-        U prvom for-u prolazimo kroz ceo niz. U drugom for-u idemo do array.length - 1 - i, -1 jer nije potrebno
-        pitati za poslednji element, a - i jer je niz sortiran sa desne strane.
-        Ovo malo ubrzava algoritam, ali idalje mu ne menja složenost.
+        
       </p>
       <pre class="bg-dark col-md-5 rounded text-light pt-3">function insertionSort(array) {
     for (var i = 1; i < array.length; i++) {
@@ -35,7 +29,6 @@
       }
     }
   } // implementacija u JS
-     
     </pre>
     </div>
 
