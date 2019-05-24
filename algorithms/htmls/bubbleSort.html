@@ -13,7 +13,7 @@
 <body>
   <div class="container" id="glavni">
     <div class="text-center">
-      <a id="headingA" href="../index.html"  title="Nazad na početnu" class="display-4 pt-1">Bubble Sort</a>
+      <a id="headingA" href="../index.html" title="Nazad na početnu" class="display-4 pt-1">Bubble Sort</a>
     </div>
     <hr class="pb-3 m-1">
 
@@ -21,10 +21,10 @@
       <p class="text-justify col-md-7">
         Bubble sort je jedan od najprostijih algoritama za sortiranje.
         Radi tako što proverava da li su dva sporedna elementa u tačnom redosledu, i ako nisu, zameni ih. Iako je relativno prost za implementaciju,
-        nije vrlo efikasan, jer mu kompleksnost raste sa kvadratom broja elemenata.
-        Može se koristiti ako ima poneki element koji nije na tačnom mestu u nizu.
-        U prvom for-u prolazimo kroz ceo niz. U drugom for-u idemo do array.length - 1 - i, "-1" jer nije potrebno
-        pitati za poslednji element, a "-i" jer je niz sortiran sa desne strane.
+        nije vrlo efikasan, jer mu kompleksnost raste sa kvadratom broja elemenata. <br>
+        U prvom for-u prolazimo kroz ceo niz. U drugom for-u idemo do array.length - 1 - i,
+        „-1“ jer poslednji element nema suseda iza njega,
+        a „-i“ jer je niz sortiran sa desne strane.
         Ovo malo ubrzava algoritam, ali idalje mu ne menja složenost.
       </p>
       <pre class="bg-dark col-md-5 rounded text-light pt-3">
@@ -49,7 +49,7 @@
         <button type="button" id="startStopBtn" class="btn btn-primary" onclick="startStopSketch()">Počni!</button>
         <button type="button" id="resetBtn" class="btn btn-primary " onclick="resetSketch()">Promešaj!</button>
         <input type="checkbox" class="ml-2" id="fpsChanger" onclick="fpsChanged()">
-        <label class="form-check-label" class="" for="fpsChanger" > Sporije!!</label>
+        <label class="form-check-label" class="" for="fpsChanger"> Sporije!!</label>
       </div>
 
       <div class="ml-auto">
@@ -82,7 +82,7 @@
     <div class="row p-2 mx-1">
       <a class="btn btn-danger mr-auto h-100" href="../index.html" title="Početna">Početna</a>
       <p id="bottomText" class="h3"><strong>bottom text</strong></p>
-      <a class="btn btn-danger ml-auto h-100" href="selectionSort.html" title="Selection Sort">Selection Sort</a>
+      <a class="btn btn-danger ml-auto h-100" href="insertionSort.html" title="Insertion Sort">Insertion Sort</a>
     </div>
   </div>
 </body>

@@ -16,12 +16,12 @@
   <div class="container" id="homeContainer">
     <p class="display-4 pt-1 text-center" id="headingA">Algoritmi za sortiranje nizova</p>
     <hr class="pb-3 m-1">
-    <p class="text-center"><small>Maturski rad, Lav Leon Hudak, 2018/2019</small></p>
+    <p class="text-center"><small>Maturski rad, Lav Leon Hudak</small></p>
 
     <p class="text-justify">
-      Nizovi su struktura podataka koja se sastoji iz više promenljivih, od kojih svaka ima
-      svoj index u nizu. Najprostiji nizovi su jednodimenzionalni, dok, kada bismo imali beskonačno mnogo memorije i kompjuterske snage,
-      mogli bi smo da imamo n-todimenzionalni niz. Kada pravimo niz, obično je potrebno definisati vrstu promenljivih koje će biti
+      Nizovi su struktura podataka koja sadrži više promenljivih, od kojih svaka ima
+      svoj index (poziciju) u nizu. Najprostiji nizovi su jednodimenzionalni, dok, kada bismo imali beskonačno mnogo memorije i kompjuterske snage,
+      mogli bismo da imamo <br> n-todimenzionalni niz. Kada pravimo niz, obično je potrebno definisati vrstu promenljivih koje će biti
       u nizu. Postoje različite vrste nizova, kao što su:
     </p>
     <div class="row mx-3">
@@ -46,10 +46,11 @@
   foo = ["jabuka", "banana", "lubenica"] // Python
  </pre>
     </div>
-
-    <p class="text-justify">Višedimenzionalni nizovi su zapravo nizovi nizova. Svaki element u nizu je niz, koji sadrzi neke vrednosti. 2D niz, takođe pod
-      imenom "matrica" (<i>engl.</i> "Matrix") je bitan koncept u matematici, a samim time i u teoriji
-      kompjutera i svetu programiranja.</p>
+    <p class="text-justify">U slučajevima kada su nam potrebni nizovi koji su sortirani, postoje 
+    posebni algoritmi koji rešavaju ovaj problem. Ispod su prikazana tri najprostija algoritma za sortiranje nizova.
+    Ako grafički prikažemo izmešani niz,  možemo videti ove algoritme na delu. Različiti načini vizualizacije nizova donose 
+    interesantne rezultate.
+  </p>
 
     <hr class="pb-3 m-1">
 
@@ -72,7 +73,7 @@
             <h4 class="card-title">Insertion Sort</h4>
             <p class="card-text">Prosečna složenost: O(n<sup>2</sup>)</p>
             <p class="card-text">Prost algoritam za sortiranje koji postepeno pravi sve veću i veću sortiranu
-              listu od niza. Neefikasan za veće nizove.</p>
+              listu od niza. Malo je efikasniji od Selection sort-a.</p>
             <a href="htmls/insertionSort.html" class="btn btn-outline-danger btn-lg">Vidi više</a>
           </div>
         </div>

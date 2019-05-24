@@ -17,18 +17,27 @@
     </div>
     <hr class="pb-3 m-1">
     <div class="row mx-auto">
-      <p class="text-justify col-md-7 ">
+      <p class="text-justify col-md-7">
+        Kako nailazi na elemente, Insertion sort traži tačnu poziciju za njih u podnizu 
+        čiji je poslednji element na poziciji i, a potom ih tu i „ubacuje“ - zbog toga je i dobio ime. Ovo se može
+        videti kao sortiran podniz koji raste. <br>
+        Prvim for-om prolazimo kroz ceo niz, ali krećemo od pozicije jedan jer 
+        nema smisla da podniz koji nastaje ima dužinu 0. Za svaki element na koji „naiđemo“ proveravamo da li je manji
+        od elementa pre njega, i pomeramo ga ako jeste. Kada ne postoji više elemenata koji 
+        su manji od trenutnog, našli smo tačnu poziciju za taj element. Nakon ovoga „nailazimo“ na sledeći element,
+        i proces se ponavlja. 
         
+         
       </p>
-      <pre class="bg-dark col-md-5 rounded text-light pt-3">function insertionSort(array) {
-    for (var i = 1; i < array.length; i++) {
-      for (var j = i; j > 0; j--) {
-        if (array[j - 1] > array[j]) {
-          swap(array, j, j - 1);
+      <pre class="bg-dark col-md-5 rounded text-light pt-3">  function insertionSort(array) {
+      for (var i = 1; i < array.length; i++) {
+        for (var j = i; j > 0; j--) {
+          if (array[j - 1] > array[j]) {
+            swap(array, j, j - 1);
+          }
         }
       }
-    }
-  } // implementacija u JS
+    } // implementacija u JS
     </pre>
     </div>
 
@@ -70,9 +79,9 @@
     </div>
 
     <div class="row p-2 mx-1">
-      <a class="btn btn-danger mr-auto h-100" href="selectionSort.html">Selection Sort</a>
+      <a class="btn btn-danger mr-auto h-100" href="bubbleSort.html">Bubble Sort</a>
       <p id="bottomText">bottom text</p>
-      <a class="btn btn-danger ml-auto h-100" href="../index.html">Početna</a>
+      <a class="btn btn-danger ml-auto h-100" href="selectionSort.html">Selection Sort</a>
     </div>
   </div>
 </body>

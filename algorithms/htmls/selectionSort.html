@@ -22,15 +22,16 @@
         sortiranje, ima neke prednosti. Ako nam je memorija ograničena,
         Selection sort-u nije potrebna kopija originalnog niza kako bi radio.
         <br>
-        Sa <i>minValue</i> pratimo vrednost najmanjeg elementa, a sa <i>indexOfMin</i> pratimo njegovu poziciju.
-        Drugom for-u nalazimo najmanji element u ostatku niza,
-        i nakon toga ga poredimo sa <i>minValue</i>,
-        i zamenjujemo ih po potrebi. Ovo ponavljamo dok niz nije kompletko sortiran.
-        <br> Selecion sort je malo sporiji od Insertion sort-a, jer mora da prođe kroz celu nesortiranu listu kako bi našao
-        najmanji element.
+        U prvom for-u prolazimo kroz ceo niz. Uzimamo početnu vrednost <i>minValue</i> da bude
+        element na indeksu i, a zatim prolazimo kroz podniz čija je prva pozicija i+1. Ako nadjemo element čija je vrednost manja od 
+        <i>minValue</i>, taj element postaje novi <i>minValue</i>. Nakon što prođemo kroz ceo podniz, proverimo da li je <i>minValue</i>
+        manji od elementa na poziciji i, i ako jeste, zamenjujemo im mesta. Ovaj proces se ponavlja dok se ceo niz ne sortira.
+        Selecion sort je malo sporiji od Insertion sort-a, jer mora da prođe kroz celu nesortiran
+        podniz kako bi našao najmanji element.
       
       </p>
-      <pre class="bg-dark col-md-5 rounded h-100 text-light pt-1">
+      <pre class="bg-dark col-md-5 rounded text-light pt-1">
+        
   function selectionSort(array) {
     for (var i = 0; i < array.length - 1; i++) {
       let minValue = array[i];
@@ -89,9 +90,9 @@
     </div>
 
     <div class="row p-2 mx-1">
-      <a class="btn btn-danger mr-auto h-100" href="bubbleSort.html">Bubble Sort</a>
+      <a class="btn btn-danger mr-auto h-100" href="insertionSort.html">Insertion Sort</a>
       <p id="bottomText">bottom text</p>
-      <a class="btn btn-danger ml-auto h-100" href="insertionSort.html">Insertion Sort</a>
+      <a class="btn btn-danger ml-auto h-100" href="../index.html">Početna</a>
     </div>
   </div>
 </body>

@@ -2,7 +2,7 @@ let niz;
 let n;
 let maxNiza;
 let rectWidth = 4;
-let ssRectWidth = rectWidth * 4;
+let ssRectWidth = rectWidth * 8;
 let u; // universal counter used in draw()
 let numOps;
 let canvas;
@@ -97,7 +97,7 @@ function rbChanged() {
 
 function fpsChanged() {
   if (fpsChanger.checked) {
-    frameRate(1);
+    frameRate(2);
   } else {
     frameRate(60);
   }
