@@ -1,15 +1,14 @@
-let niz;
-let n;
-let maxNiza;
-let rectWidth = 4;
+let niz; // sadrži niz
+let n; // broj elemenata u nizu
+let maxNiza; // vrednost najvećeg elementa u nizu
+const rectWidth = 4;
 let ssRectWidth = rectWidth * 8;
-let u; // universal counter used in draw()
-let numOps;
-let canvas;
-let step;
-let interval;
+let u; // globalni brojač koji se koristi u draw()
+let numOps; // broj operacija 
+let canvas; // promenljiva u kojoj se čuva kanvas
+let step; // razmak između dva elementa u nizu
+let firstLoop = true; // označava prvo iscrtavanje na kanvasu
 
-let firstLoop = true;
 let stubovi = false;
 let piramida = false;
 let veciStubovi = false;
@@ -23,6 +22,7 @@ let rbPiramida = document.getElementById('rbPiramida');
 let rbVStubovi = document.getElementById('rbVStubovi');
 let rbElipse = document.getElementById('rbElipse');
 let fpsChanger = document.getElementById('fpsChanger');
+
 var containerDiv = document.getElementById('glavni');
 var positionInfo = containerDiv.getBoundingClientRect();
 var dHeight = positionInfo.height;
@@ -32,31 +32,32 @@ function resetSketch() {
   u = 0;
   numOps = 0;
   firstLoop = true;
-  
-  // proveravanje radioButton-a
+  fpsChanger.checked = false;
+  // proveravanje radioButton-a za iscrtavanje
+
   if (rbStubovi.checked) {
     stubovi = true;
   } else if (rbPiramida.checked) {
     piramida = true;
   } else if (rbVStubovi.checked) {
     veciStubovi = true;
+    fpsChanger.checked = true;
   } else if (rbElipse.checked) {
     elipse = true;
   } else if (rbPolarCircle.checked) {
     polarCircle = true;
   }
 
-  // pravljenje niza
   if (piramida) {
     n = ceil(width);
     niz = new Array(n);
-    step = ((height - 100) / niz.length) / 2;
+    step = (height / niz.length) / 2;
   } else if (stubovi) {
     n = ceil(width / rectWidth);
     niz = new Array(n);
     step = (height / niz.length);
   } else if (elipse) {
-    n = floor(2 * width / 5);
+    n = ceil(2 * width / 5);
     niz = new Array(n);
     step = 1;
   } else if (veciStubovi) {
@@ -68,6 +69,7 @@ function resetSketch() {
     niz = new Array(n);
     step = 1;
   }
+
   niz[0] = step;
   for (var i = 1; i < niz.length; i++) {
     niz[i] = niz[i - 1] + step;
@@ -76,6 +78,7 @@ function resetSketch() {
   colorMode(HSB, maxNiza);
   shuffleArray(niz);
   redraw();
+
   firstLoop = true;
 }
 
@@ -87,6 +90,7 @@ function rbChanged() {
   elipse = false;
   polarCircle = false;
   resetSketch();
+  fpsChanged();
 }
 
 function fpsChanged() {
@@ -137,15 +141,12 @@ function shuffleArray(array) {
 function crtaj(array, piramida, stubovi, elipse, polarniKrug) {
   // crtanje na canvasu
   if (piramida) {
-    strokeWeight(1);
     for (var i = 0; i < array.length; i++) {
       stroke(niz[i], maxNiza, maxNiza);
       line(i, height / 2, i, height / 2 - array[i]);
       line(i, height / 2, i, height / 2 + array[i]);
     }
   } else if (stubovi) {
-
-    strokeWeight(1);
     for (var i = 0; i < array.length; i++) {
       fill(niz[i], maxNiza, maxNiza);
       stroke(niz[i], maxNiza, maxNiza);
@@ -153,13 +154,11 @@ function crtaj(array, piramida, stubovi, elipse, polarniKrug) {
     }
   } else if (elipse) {
     noFill();
-    strokeWeight(1);
     for (var i = 0; i < array.length; i++) {
       stroke(niz[i], maxNiza, maxNiza);
       ellipse(width / 2, height / 2, i, array[i] / 2);
     }
   } else if (veciStubovi) {
-    strokeWeight(1);
     for (var i = 0; i < array.length; i++) {
       stroke(niz[i], maxNiza, maxNiza);
       fill(niz[i], maxNiza, maxNiza);
@@ -169,9 +168,9 @@ function crtaj(array, piramida, stubovi, elipse, polarniKrug) {
     let r = height * 0.45;
     let x0 = width / 2;
     let y0 = height / 2;
+    let halfDeg = 0.5 * (Math.PI / 180);
     for (var i = 0; i < array.length; i++) {
       let theta = i * (Math.PI / 180);
-      let halfDeg = 0.5 * (Math.PI / 180);
       let xl = x0 + r * Math.cos(theta - halfDeg);
       let yl = y0 + r * Math.sin(theta - halfDeg);
       let xr = x0 + r * Math.cos(theta + halfDeg);
