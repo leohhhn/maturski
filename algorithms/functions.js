@@ -83,7 +83,6 @@ function resetSketch() {
 }
 
 function rbChanged() {
-  // radioButton Changed event
   stubovi = false;
   piramida = false;
   veciStubovi = false;
@@ -113,6 +112,7 @@ function startStopSketch() {
   }
 }
 
+
 function windowResized() {
   positionInfo = containerDiv.getBoundingClientRect();
   dHeight = positionInfo.height;
@@ -129,7 +129,6 @@ function swap(array, a, b) {
 
 function shuffleArray(array) {
   var currentIndex = array.length;
-  var temporaryValue;
   var randomIndex;
   for (var i = array.length; i > 0; i--) {
     randomIndex = Math.floor(Math.random() * currentIndex);
@@ -138,8 +137,7 @@ function shuffleArray(array) {
   }
 }
 
-function crtaj(array, piramida, stubovi, elipse, polarniKrug) {
-  // crtanje na canvasu
+function crtaj(array) {
   if (piramida) {
     for (var i = 0; i < array.length; i++) {
       stroke(niz[i], maxNiza, maxNiza);
@@ -156,7 +154,7 @@ function crtaj(array, piramida, stubovi, elipse, polarniKrug) {
     noFill();
     for (var i = 0; i < array.length; i++) {
       stroke(niz[i], maxNiza, maxNiza);
-      ellipse(width / 2, height / 2, i, array[i] / 2);
+      ellipse(width / 2, height / 2, i, i / 2);
     }
   } else if (veciStubovi) {
     for (var i = 0; i < array.length; i++) {
@@ -164,7 +162,7 @@ function crtaj(array, piramida, stubovi, elipse, polarniKrug) {
       fill(niz[i], maxNiza, maxNiza);
       rect(i * ssRectWidth, height - array[i], ssRectWidth, height);
     }
-  } else if (polarniKrug) {
+  } else if (polarCircle) {
     let r = height * 0.45;
     let x0 = width / 2;
     let y0 = height / 2;
@@ -183,7 +181,6 @@ function crtaj(array, piramida, stubovi, elipse, polarniKrug) {
 }
 
 function ispisiPodatke(compN, elemN) {
-  // ispisivanje podataka, broj elemenata i broj operacija na canvasu
   noStroke();
   colorMode(RGB);
   fill(255);
