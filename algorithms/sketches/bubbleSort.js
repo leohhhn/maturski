@@ -31,8 +31,8 @@ function draw() {
     numOps = 0;
     firstLoop = false;
   }
-  crtaj(niz);
-  ispisiPodatke(numOps, n);
+  crtaj();
+  ispisiPodatke();
 }
 
 

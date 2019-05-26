@@ -33,7 +33,7 @@ function draw() {
     firstLoop = false;
   }
 
-  crtaj(niz);
+  crtaj();
   ispisiPodatke(numOps, n);
 }
 
