@@ -29,6 +29,7 @@ var dHeight = positionInfo.height;
 var dWidth = positionInfo.width;
 
 function resetSketch() {
+  ellipseMode(RADIUS);
   u = 0;
   numOps = 0;
   firstLoop = true;
@@ -73,12 +74,11 @@ function resetSketch() {
   niz[0] = step;
   for (var i = 1; i < niz.length; i++)
     niz[i] = niz[i - 1] + step;
-
+    
   maxNiza = niz[niz.length - 1];
   colorMode(HSB, maxNiza);
   shuffleArray(niz);
   redraw();
-
   firstLoop = true;
 }
 
